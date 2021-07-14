@@ -2,10 +2,10 @@
 #Script to generate n number of random users, where n is a command line argument
 #Intended use case: python user_gen.py 100 > FakeUsers.csv
 
-import requests
-import argparse
+import requests #to call the fake name API
+import argparse #to parse command line args
 #from pprint import pprint #to help read API response
-from decouple import config
+from decouple import config # to set private vars in .env
 
 #Passing arg int from command line to query limit
 parser = argparse.ArgumentParser()
@@ -35,7 +35,7 @@ for n in names:
     username =fName+"."+lName+id+","
     active = "1," #Setting all to active for this use case
     pw = "1234," #password not actually set, just need non-null value
-    #Generating relevant job titles from .env. (Weighted JOB1->JOB2->JOB3 for my needs)
+    #Generating relevant job titles from .env. (Weighted JOB1->JOB2->JOB3 for my case)
     if n['id']%2 == 0:
         job = config("JOB1")+","
     elif n['id']%3 == 0:
@@ -43,7 +43,7 @@ for n in names:
     else:
         job = config("JOB3")+","
 
-    #Generating departments from .env
+    #Generating departments from .env (Heavily weighted toward DEPT1 for my case)
     if dCount < 5:
         dept = config('DEPT1')+","
         dCount= dCount+1
