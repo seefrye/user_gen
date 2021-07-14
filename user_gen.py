@@ -37,18 +37,18 @@ for n in names:
     pw = "1234," #password not actually set, just need non-null value
     #Generating relevant job titles from .env. (Weighted JOB1->JOB2->JOB3 for my case)
     if n['id']%2 == 0:
-        job = config("JOB1")+","
+        job = config("JOB1")+"," #stored in .env
     elif n['id']%3 == 0:
-        job = config("JOB2")+","
+        job = config("JOB2")+"," #stored in .env
     else:
-        job = config("JOB3")+","
+        job = config("JOB3")+"," #stored in .env
 
     #Generating departments from .env (Heavily weighted toward DEPT1 for my case)
     if dCount < 5:
-        dept = config('DEPT1')+","
+        dept = config('DEPT1')+"," #stored in .env
         dCount= dCount+1
     else:
-        dept = config('DEPT2')+","
+        dept = config('DEPT2')+"," #stored in .env
         dCount = 1
     print(id+","+lName+","+fName+","+email+username+job+dept+active+pw)
 #pprint(names) #pretty print of full API response
